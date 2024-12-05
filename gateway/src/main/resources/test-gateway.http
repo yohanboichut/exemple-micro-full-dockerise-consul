@@ -1,0 +1,26 @@
+POST localhost:8080/api/auth/inscription
+Content-Type: application/json
+
+{"email":"yohan.boichut@univ-orleans.fr", "login":"yoh4n", "password":"babar"}
+
+> {%
+    client.global.set("yoh_token", response.headers.valueOf("Authorization"));
+
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Le compte n'a pas été créé");
+    });
+%}
+###
+
+
+POST localhost:8080/api/pileouface/partie
+Authorization: {{yoh_token}}
+Content-Type: application/x-www-form-urlencoded
+
+prediction=Pile
+
+###
+
+GET http://localhost:8080/jeu/statistiques
+Authorization: {{yoh_token}}
+Accept: application/json
