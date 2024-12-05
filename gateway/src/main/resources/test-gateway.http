@@ -21,6 +21,6 @@ prediction=Pile
 
 ###
 
-GET http://localhost:8080/jeu/statistiques
+GET http://localhost:8080/api/pileouface/statistiques
 Authorization: {{yoh_token}}
 Accept: application/json
